@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Favorites from "./favelist";
+import InputBar from "./inputbar";
 
 export const Navbar = () => {
 	return (
@@ -8,6 +9,10 @@ export const Navbar = () => {
 			<Link to="/" className="ms-4">
 				<span className="navbar-brand mb-0 h1">Star Wars</span>
 			</Link>
+
+			<div className="border-primary">
+				<InputBar/>
+			</div>
 
 			<div className="ml-auto">
 				<a class="nav-link dropdown-toggle btn-primary text-light rounded me-4" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
