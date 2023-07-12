@@ -41,12 +41,12 @@ const InputBar = () => {
    })
 
     return(
-    <div>
-    <form>
+    <div className='parentOfInput justify-content-end'>
+    <form autoComplete='off'>
         <i class="fas fa-search me-2"></i>
-        <input placeholder='search' type='text' value={text} onChange={ (e) => setText(e.target.value) }></input>
+        <input placeholder='search' type='text' value={text} onChange={(e) => setText(e.target.value) }></input>
     </form>
-    <div>
+    <div className='dropdown'>
         {filtered.map((item, index) => {
             return(
                 <p>{item.name}</p>
