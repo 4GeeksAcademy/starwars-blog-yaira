@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router';
+
 
 const InputBar = () => {
     const [text, setText] = useState('');
@@ -47,14 +49,19 @@ const InputBar = () => {
         <input placeholder='search' type='text' value={text} onChange={(e) => setText(e.target.value) }></input>
     </form>
     <div className='dropdown'>
-        {filtered.map((item, index) => {
+        {text.length ? filtered.map((item, index) => {
             return(
-                <p>{item.name}</p>
+                <>
+
+                <p >{item.name}</p>
+                
+                </>
             )
-        })}
+        }) : ''}
+        
     </div>
     </div>
     )
 }
-
 export default InputBar
+// reduce function can be used instead of mapping and filter

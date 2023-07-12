@@ -1,20 +1,48 @@
-import React from "react";
+import React, {useContext, useState, useEffect} from "react";
+import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
+
 
 const Planets = () => {
+
+    const [Planets, setPlanets] = useState([]);
+    const {store, actions} = useContext(Context);
+    const [liked, setLiked] = useState(false);
+
+
+    useEffect(() => {
+        async function fetchData(){
+            const fetchin = await fetch('https://www.swapi.tech/api/planets');
+            const data = await fetchin.json();
+            setPlanets(data.results);
+
+        }
+
+        fetchData()
+
+    },[])
+
+
 
     return(
         <>
         <h3 className="text-danger mt-4">Planets</h3>
+        <div className="d-flex sideScroll row flex-nowrap overflow-auto ">
 
+        {Planets.map((planet, index) => (
         <div className="card w-25">
-        <img className="card-img-top" src="..." alt="Card image cap"></img>
+        <img className="card-img-top img-fluid" src="https://www.nawpic.com/media/2020/star-wars-nawpic-23.jpg" alt="Card image cap"></img>
             <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <h5 className="card-title">{planet.name}</h5>
+            <div className="d-flex justify-content-end mt-2">
             <a href="#" className="btn btn-danger me-1"><i class="fa fa-heart ms-1"></i></a>
-            <a href="#" className="btn btn-primary">Learn More</a>
+            <Link to={/PlanetDescription/+ planet.uid} className="btn btn-primary">Learn More</Link>
             </div>
-        </div> 
+            </div>
+        </div>
+        ))}
+
+        </div>
       </>
     );
 }

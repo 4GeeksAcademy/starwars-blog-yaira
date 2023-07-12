@@ -24,3 +24,7 @@
 .dropdown p:hover {
     background-color: #e9e9e9;
   }
+
+.noDrop {
+    display: hidden;
+}

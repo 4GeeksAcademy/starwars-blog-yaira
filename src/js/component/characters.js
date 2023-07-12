@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useContext}  from "react";
 import { Link } from "react-router-dom"; //import the link tag
-import CharacterDescription from "../views/characterDescrip";
 import { Context } from "../store/appContext";
 
 const Characters = () => {
@@ -13,12 +12,13 @@ const Characters = () => {
             const result = await fetch('https://www.swapi.tech/api/people') // slash people to get all the list of people
             const data =  await result.json() //convert into json 
             setCharacters(data.results) //the now json url data to show its results, the data
-            actions.setItem(data.result) 
+            actions.setItem(data.result) //the favorites 
         }
 
         fetchData() //run the fecthdata function
     },[])
 
+    //favorite button function
     useEffect(() => {
         if (
             store.favorites.find((x) => {
@@ -49,7 +49,9 @@ const Characters = () => {
                 <div className="card-body">
                 <h5 className="card-title">{character.name}</h5>
                 <div className="d-flex justify-content-end mt-2">
-                    <a href="#" className="btn btn-danger me-1"><i class="fa fa-heart ms-1"></i></a>
+                    <a className="btn btn-danger me-1" onClick={() => {actions.addFavorite(character)}}>
+                        <i class="fa fa-heart ms-1"></i>
+                    </a>
                     <Link to={'/CharacterDescription/' + character.uid} className="btn btn-primary">Learn More</Link>
                 </div>
                 </div>
