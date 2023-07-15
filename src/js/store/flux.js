@@ -45,7 +45,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			addFavorite: (e) => {
 				setStore({
-					favorites:[...getStore().favorites, e],
+					favorites:[ ...new Set([...getStore().favorites, e])], //...new function removes duplicate within array
 					item: getStore().item,
 					description: getStore().description
 				})	

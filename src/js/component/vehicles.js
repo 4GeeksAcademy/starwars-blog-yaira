@@ -19,6 +19,23 @@ const Vehicles = () => {
         getVehicles()
 
     },[])
+
+        //favorite button function
+        useEffect(() => {
+            if (
+                store.favorites.find((x) => {
+                    for (let i in x) {
+                        if (vehicles[i] && vehicles[i].name === x[i].name) {
+                            return true;
+                        }
+                    }
+                })
+            ) {
+                setliked(true);
+            } else {
+                setliked(false);
+            }
+        }, [store.favorites]);
     
 
     return(
@@ -32,7 +49,7 @@ const Vehicles = () => {
             <div className="card-body">
             <h5 className="card-title">{vehicle.name}</h5>
             <div className="d-flex justify-content-end mt-2">
-            <a href="#" className="btn btn-danger me-1">
+            <a className="btn btn-danger me-1" onClick={() => {actions.addFavorite(vehicle.name)}}>
                 <i class="fa fa-heart ms-1"></i>
             </a>
             <Link to={'/VehicleDescription/' + vehicle.uid} className="btn btn-primary">Learn More</Link>            

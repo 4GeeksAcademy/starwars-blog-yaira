@@ -49,7 +49,7 @@ const Characters = () => {
                 <div className="card-body">
                 <h5 className="card-title">{character.name}</h5>
                 <div className="d-flex justify-content-end mt-2">
-                    <a className="btn btn-danger me-1" onClick={() => {actions.addFavorite(character)}}>
+                    <a className="btn btn-danger me-1" onClick={() => {actions.addFavorite(character.name)}}>
                         <i class="fa fa-heart ms-1"></i>
                     </a>
                     <Link to={'/CharacterDescription/' + character.uid} className="btn btn-primary">Learn More</Link>

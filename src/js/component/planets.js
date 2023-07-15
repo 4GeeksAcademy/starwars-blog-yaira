@@ -22,6 +22,23 @@ const Planets = () => {
 
     },[])
 
+        //favorite button function
+        useEffect(() => {
+            if (
+                store.favorites.find((x) => {
+                    for (let i in x) {
+                        if (Planets[i] && Planets[i].name === x[i].name) {
+                            return true;
+                        }
+                    }
+                })
+            ) {
+                setLiked(true);
+            } else {
+                setLiked(false);
+            }
+        }, [store.favorites]);
+
 
 
     return(
@@ -35,7 +52,8 @@ const Planets = () => {
             <div className="card-body">
             <h5 className="card-title">{planet.name}</h5>
             <div className="d-flex justify-content-end mt-2">
-            <a href="#" className="btn btn-danger me-1"><i class="fa fa-heart ms-1"></i></a>
+            <a className="btn btn-danger me-1" onClick={() => {actions.addFavorite(planet.name)}}>
+                <i class="fa fa-heart ms-1"></i></a>
             <Link to={/PlanetDescription/+ planet.uid} className="btn btn-primary">Learn More</Link>
             </div>
             </div>

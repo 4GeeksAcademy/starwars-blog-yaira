@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useParams,useNavigate } from 'react-router';
 
 
 const InputBar = () => {
     const [text, setText] = useState('');
     const [data, setData] = useState([]);
+    const navigate = useNavigate();
     console.log(text);
+
 
     useEffect(() => { 
     async function fetchpeople () {  //this is fetching the data for the input people, planets, and vehicles
@@ -52,8 +54,21 @@ const InputBar = () => {
         {text.length ? filtered.map((item, index) => {
             return(
                 <>
+                {console.log(item)}
 
-                <p >{item.name}</p>
+                <p onClick={() => {
+                    let url = item.url;
+                    let id = item.uid
+                    if(url.includes('people')){
+                        navigate(`/CharacterDescription/${id}`)
+                    }
+                    if(url.includes('planets')){
+                        navigate(`/PlanetDescription/${id}`)
+                    }
+                    if(url.includes('vehicles')){
+                        navigate(`/VehicleDescription/${id}`)
+                    }
+                }} >{item.name}</p>
                 
                 </>
             )
