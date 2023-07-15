@@ -39,7 +39,7 @@ const InputBar = () => {
     }, [])
 
    console.log('data', data) 
-
+    //fitler all names from the api object array that has the 'text' u typed 
    let filtered = data.filter(item => {
         return item.name.includes(text)
    })
@@ -50,6 +50,7 @@ const InputBar = () => {
         <i class="fas fa-search me-2"></i>
         <input placeholder='search' type='text' value={text} onChange={(e) => setText(e.target.value) }></input>
     </form>
+    
     <div className='dropdown'>
         {text.length ? filtered.map((item, index) => {
             return(
